@@ -1,7 +1,7 @@
 defmodule Giza do
   @moduledoc ~S"""
-  Client for Sphinx Search, the search product built by the legendary Andrew Aksyonoff.  Sphinx is 
-  a robust and FAST database indexer and search daemon that can process large amounts of concurrent 
+  Client for Sphinx Search, the search product built by the legendary Andrew Aksyonoff.  Sphinx is
+  a robust and FAST database indexer and search daemon that can process large amounts of concurrent
   through-put.  Giza aims to make implementing Sphinx in your Elixir apps quick and simple.  Check
   out the examples below for most use cases and dive deeper if need be through the docs. The github
   docs take an Elixir perspective approach.  This doc here will get you up and running with Sphinx
@@ -47,7 +47,7 @@ defmodule Giza do
 
       alias Giza.SphinxQL
 
-      SphinxQL.new() 
+      SphinxQL.new()
         |> SphinxQL.suggest("posts_index", "splt")
         |> SphinxQL.send()
 
@@ -75,7 +75,7 @@ defmodule Giza do
       |> SphinxQL.raw("SELECT id, WEIGHT() as w FROM posts_index WHERE MATCH('subetei the swift')")
       |> SphinxQL.send()
 
-      %SphinxqlResponse{ .. }  
+      %SphinxqlResponse{ .. }
   """
 
   alias Giza.Structs.SphinxqlResponse
@@ -118,10 +118,10 @@ defmodule Giza do
       {190,
       ..
       }],
-      status: 0, 
-      time: 0.008, 
-      total: 19, 
-      total_found: 19, 
+      status: 0,
+      time: 0.008,
+      total: 19,
+      total_found: 19,
       warnings: [],
       words: [{"test", 19, 23}]
       }
@@ -140,7 +140,7 @@ defmodule Giza do
   end
 
   defp get_doc_ids([query_attr|tail], accum) do
-    {doc_id, _} = query_attr
+    doc_id = hd(query_attr)
     new_accum = [doc_id|accum]
 
     get_doc_ids(tail, new_accum)
